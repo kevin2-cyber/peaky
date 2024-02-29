@@ -27,6 +27,7 @@ class AppConstants {
   // colors
   static const kColorPrimary = Color(0xFFe0e5eb);
   static const kColorOnPrimary = Color(0xFF9CACBC);
+  static const kColorPrimaryContainer = Color(0xFF634172);
   
   // dummy data
   static final kDummyData = <Place>[

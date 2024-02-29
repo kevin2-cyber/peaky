@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(left: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -95,30 +95,33 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              TextFormField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search, color: AppConstants.kColorOnPrimary,),
-                  hintText: 'Search your properties....',
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15))
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(color: Colors.grey)
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      borderSide: BorderSide(color: Colors.grey)
-                  ),
-                  suffixIcon: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.only(right: 4.0),
-                    decoration: const BoxDecoration(
-                      color: AppConstants.kColorPrimary,
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search, color: AppConstants.kColorOnPrimary,),
+                    hintText: 'Search your properties....',
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15))
                     ),
-                    child: Image.asset(AppConstants.filter, height: MediaQuery.of(context).size.height * 0.02, width: 30,),
-                  )
+                    enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(color: Colors.grey)
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide: BorderSide(color: Colors.grey)
+                    ),
+                    suffixIcon: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.only(right: 4.0),
+                      decoration: const BoxDecoration(
+                        color: AppConstants.kColorPrimary,
+                        borderRadius: BorderRadius.all(Radius.circular(15))
+                      ),
+                      child: Image.asset(AppConstants.filter, height: MediaQuery.of(context).size.height * 0.02, width: 30,),
+                    )
+                  ),
                 ),
               ),
               SizedBox(
@@ -142,11 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ChipList(
                 listOfChipNames: categories,
                 listOfChipIndicesCurrentlySeclected: const [1],
-                activeBgColorList: [Theme.of(context).primaryColor],
+                activeBgColorList: const [AppConstants.kColorPrimaryContainer],
                 inactiveBgColorList: const [Colors.white],
                 inactiveBorderColorList: const [Color(0xFFE1E6ED)],
                 inactiveTextColorList: const [AppConstants.kColorOnPrimary],
-                showCheckmark: false,
+                scrollPhysics: const BouncingScrollPhysics(),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
@@ -154,6 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 350,
                 child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: _places.length,
                   itemBuilder: (context, index) => PlaceCard(place: _places[index]),
@@ -182,6 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 350,
                 child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: _places.length,
                   itemBuilder: (context, index) => PopularPlaceCard(place: _places[index]),
