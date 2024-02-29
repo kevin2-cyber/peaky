@@ -105,7 +105,7 @@ with TickerProviderStateMixin {
                ),
             ),
             SliverToBoxAdapter(
-              child: Container(
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.6,
                 child: TabBarView(controller: _tabController,children: tabViews,),
             ),
