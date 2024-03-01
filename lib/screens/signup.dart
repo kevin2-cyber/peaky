@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:peaky/screens/welcome.dart';
 
 import '../util/constants.dart';
 
@@ -50,14 +51,70 @@ class _SignUpState extends State<SignUp>
           ),
           body: TabBarView(
             controller: _tabController,
-            children: [
-              const RegisterWithEmail(),
-              Container(
-                color: Colors.pink,
-              ),
+            children: const [
+              RegisterWithEmail(),
+              RegisterWithPhone(),
             ],
           ),
         ),
+    );
+  }
+}
+
+class RegisterWithPhone extends StatelessWidget {
+  const RegisterWithPhone({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Text('PHONE'),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.phone,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.phone, color: AppConstants.kColorOnPrimary,),
+                hintText: 'Enter your number',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15))
+                ),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: AppConstants.kColorPrimary)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: AppConstants.kColorPrimaryContainer)
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            MaterialButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WelcomeScreen())),
+              height: 50,
+              minWidth: MediaQuery.of(context).size.width,
+              color: AppConstants.kColorPrimaryContainer,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              textColor: Colors.white,
+              child: const Text('Explore Now'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -71,18 +128,46 @@ class RegisterWithEmail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('EMAIL'),
-          const SizedBox(
-            height: 10,
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.mail, color: AppConstants.kColorOnPrimary,),
-                hintText: 'Enter your email',
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('EMAIL'),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.mail, color: AppConstants.kColorOnPrimary,),
+                  hintText: 'Enter your email',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15))
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(color: AppConstants.kColorPrimary)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(color: AppConstants.kColorPrimaryContainer)
+                  ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text('PASSWORD'),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.visiblePassword,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.lock, color: AppConstants.kColorOnPrimary,),
+                hintText: 'Enter your password',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15))
                 ),
@@ -94,144 +179,121 @@ class RegisterWithEmail extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     borderSide: BorderSide(color: AppConstants.kColorPrimaryContainer)
                 ),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text('PASSWORD'),
-          const SizedBox(
-            height: 10,
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.lock, color: AppConstants.kColorOnPrimary,),
-              hintText: 'Enter your password',
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15))
-              ),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(color: AppConstants.kColorPrimary)
-              ),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(color: AppConstants.kColorPrimaryContainer)
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Row(
-            children: [
-              Spacer(),
-              Text('Forgot Password?'),
-            ],
-          ),
-          Row(
-            children: [
-              Checkbox(
-                  value: false,
-                  onChanged: (name) {}
-              ),
-              const Text('Remember me'),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          MaterialButton(
-            onPressed: () {},
-            height: 50,
-            minWidth: MediaQuery.of(context).size.width * 0.9,
-            color: AppConstants.kColorPrimaryContainer,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+            const SizedBox(
+              height: 10,
             ),
-            textColor: Colors.white,
-            child: const Text('Explore Now'),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Center(child: Text('Or continue with')),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MaterialButton(
-                onPressed: () {},
-                height: 50,
-                minWidth: 150,
-                color: AppConstants.kColorPrimary,
-                elevation: 0,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))
+            const Row(
+              children: [
+                Spacer(),
+                Text('Forgot Password?'),
+              ],
+            ),
+            Row(
+              children: [
+                Checkbox(
+                    value: false,
+                    onChanged: (name) {}
                 ),
-                child: Row(
-                  children: [
-                    Image.asset(AppConstants.google, height: 24, width: 24, fit: BoxFit.fill,),
-                    const SizedBox(width: 10,),
-                    const Text(
-                        'Sign up',
-                      style: TextStyle(
-                        color: AppConstants.kColorOnPrimary,
-                      ),
-                    ),
-                  ],
-                ),
+                const Text('Remember me'),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            MaterialButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WelcomeScreen())),
+              height: 50,
+              minWidth: MediaQuery.of(context).size.width,
+              color: AppConstants.kColorPrimaryContainer,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              MaterialButton(
-                onPressed: () {},
-                height: 50,
-                minWidth: 150,
-                elevation: 0,
-                color: AppConstants.kColorPrimary,
-                shape: const RoundedRectangleBorder(
+              textColor: Colors.white,
+              child: const Text('Explore Now'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Center(child: Text('Or continue with')),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MaterialButton(
+                  onPressed: () {},
+                  height: 50,
+                  minWidth: 150,
+                  color: AppConstants.kColorPrimary,
+                  elevation: 0,
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
-                child: const Row(
-                  children: [
-                    Icon(Icons.apple),
-                    SizedBox(width: 10,),
-                    Text(
-                        'Sign up',
-                      style: TextStyle(
-                        color: AppConstants.kColorOnPrimary,
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(AppConstants.google, height: 24, width: 24, fit: BoxFit.fill,),
+                      const SizedBox(width: 10,),
+                      const Text(
+                          'Sign up',
+                        style: TextStyle(
+                          color: AppConstants.kColorOnPrimary,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Center(
-            child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                        text: 'Already have an account? ',
-                      style: TextStyle(
-                        color: AppConstants.kColorOnPrimary,
+                MaterialButton(
+                  onPressed: () {},
+                  height: 50,
+                  minWidth: 150,
+                  elevation: 0,
+                  color: AppConstants.kColorPrimary,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.apple),
+                      SizedBox(width: 10,),
+                      Text(
+                          'Sign up',
+                        style: TextStyle(
+                          color: AppConstants.kColorOnPrimary,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                        text: 'Sign In',
-                      style: TextStyle(
-                        color: AppConstants.kColorPrimaryContainer,
-                      )
-                    ),
-                  ]
+                    ],
+                  ),
                 ),
+              ],
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 10,
+            ),
+            const Center(
+              child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                          text: 'Already have an account? ',
+                        style: TextStyle(
+                          color: AppConstants.kColorOnPrimary,
+                        ),
+                      ),
+                      TextSpan(
+                          text: 'Sign In',
+                        style: TextStyle(
+                          color: AppConstants.kColorPrimaryContainer,
+                        )
+                      ),
+                    ]
+                  ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

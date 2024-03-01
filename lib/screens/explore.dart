@@ -47,7 +47,7 @@ class _ExploreState extends State<Explore> {
                             fontSize: 16,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         MaterialButton(
