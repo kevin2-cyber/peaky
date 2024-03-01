@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:peaky/home.dart';
-import '../util/constants.dart';
+import 'package:peaky/screens/home.dart';
+import '../../util/constants.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

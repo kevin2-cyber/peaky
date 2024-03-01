@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:peaky/screens/signup.dart';
 import 'package:peaky/util/constants.dart';
 
-import 'model/place.dart';
+import '../model/place.dart';
 
 class Explore extends StatefulWidget {
   const Explore({super.key, required this.place});
@@ -50,7 +51,7 @@ class _ExploreState extends State<Explore> {
                           height: 20,
                         ),
                         MaterialButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUp())),
                           height: 50,
                           minWidth: MediaQuery.of(context).size.width * 0.9,
                           color: AppConstants.kColorPrimaryContainer,

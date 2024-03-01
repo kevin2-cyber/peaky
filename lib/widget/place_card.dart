@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:peaky/details.dart';
+import 'package:peaky/screens/details.dart';
 import 'package:peaky/model/place.dart';
 
 import '../util/constants.dart';

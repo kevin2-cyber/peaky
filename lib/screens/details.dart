@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:peaky/explore.dart';
+import 'package:peaky/screens/explore.dart';
 import 'package:peaky/model/place.dart';
 import 'package:peaky/util/constants.dart';
 
@@ -80,21 +81,31 @@ with TickerProviderStateMixin {
                   borderRadius: const BorderRadius.only(bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20))
                 ),
               ),
-               bottom: PreferredSize(
-                 preferredSize: const Size(20,20),
-                 child: Container(
-                   color: Colors.white,
-                   padding: const EdgeInsets.only(left: 16, right: 16),
-                   child: TabBar(
-                     tabs: tabs,
-                     indicatorSize: TabBarIndicatorSize.tab,
-                     controller: _tabController,
-                     labelColor: AppConstants.kColorPrimaryContainer,
-                     unselectedLabelColor: AppConstants.kColorOnPrimary,
-                     indicatorColor: AppConstants.kColorPrimaryContainer,
-                   ),
-                 )
-               ),
+               // bottom: PreferredSize(
+               //   preferredSize: const Size(20,20),
+               //   child: Container(
+               //     color: Colors.white,
+               //     padding: const EdgeInsets.only(left: 16, right: 16),
+               //     child: TabBar(
+               //       tabs: tabs,
+               //       indicatorSize: TabBarIndicatorSize.tab,
+               //       controller: _tabController,
+               //       labelColor: AppConstants.kColorPrimaryContainer,
+               //       unselectedLabelColor: AppConstants.kColorOnPrimary,
+               //       indicatorColor: AppConstants.kColorPrimaryContainer,
+               //     ),
+               //   )
+               // ),
+            ),
+            SliverToBoxAdapter(
+              child: TabBar(
+                tabs: tabs,
+                indicatorSize: TabBarIndicatorSize.tab,
+                controller: _tabController,
+                labelColor: AppConstants.kColorPrimaryContainer,
+                unselectedLabelColor: AppConstants.kColorOnPrimary,
+                indicatorColor: AppConstants.kColorPrimaryContainer,
+              ),
             ),
             SliverToBoxAdapter(
               child: SizedBox(
