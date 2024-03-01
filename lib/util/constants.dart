@@ -12,6 +12,7 @@ class AppConstants {
   static const search = 'assets/icons/search.png';
   static const user = 'assets/icons/user.png';
   static const back = 'assets/icons/back.png';
+  static const google = 'assets/icons/google.png';
 
   // images
   static const amar = 'assets/images/amar.jpg';

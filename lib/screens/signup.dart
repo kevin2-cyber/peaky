@@ -105,7 +105,7 @@ class RegisterWithEmail extends StatelessWidget {
           ),
           TextFormField(
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.mail, color: AppConstants.kColorOnPrimary,),
+              prefixIcon: Icon(Icons.lock, color: AppConstants.kColorOnPrimary,),
               hintText: 'Enter your password',
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15))
@@ -155,33 +155,54 @@ class RegisterWithEmail extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Text('Or continue with'),
+          const Center(child: Text('Or continue with')),
           const SizedBox(
             height: 10,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MaterialButton(
-                  onPressed: () {},
+                onPressed: () {},
+                height: 50,
+                minWidth: 150,
+                color: AppConstants.kColorPrimary,
+                elevation: 0,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10))
                 ),
-                child: const Row(
+                child: Row(
                   children: [
-                    Icon(Icons.code),
-                    Text('Sign up'),
+                    Image.asset(AppConstants.google, height: 24, width: 24, fit: BoxFit.fill,),
+                    const SizedBox(width: 10,),
+                    const Text(
+                        'Sign up',
+                      style: TextStyle(
+                        color: AppConstants.kColorOnPrimary,
+                      ),
+                    ),
                   ],
                 ),
               ),
               MaterialButton(
                 onPressed: () {},
+                height: 50,
+                minWidth: 150,
+                elevation: 0,
+                color: AppConstants.kColorPrimary,
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))
                 ),
                 child: const Row(
                   children: [
                     Icon(Icons.apple),
-                    Text('Sign up'),
+                    SizedBox(width: 10,),
+                    Text(
+                        'Sign up',
+                      style: TextStyle(
+                        color: AppConstants.kColorOnPrimary,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -190,23 +211,25 @@ class RegisterWithEmail extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                      text: 'Already have an account?',
-                    style: TextStyle(
-                      color: AppConstants.kColorOnPrimary,
+          const Center(
+            child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                        text: 'Already have an account? ',
+                      style: TextStyle(
+                        color: AppConstants.kColorOnPrimary,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                      text: 'Sign In?',
-                    style: TextStyle(
-                      color: AppConstants.kColorPrimaryContainer,
-                    )
-                  ),
-                ]
-              ),
+                    TextSpan(
+                        text: 'Sign In',
+                      style: TextStyle(
+                        color: AppConstants.kColorPrimaryContainer,
+                      )
+                    ),
+                  ]
+                ),
+            ),
           ),
         ],
       ),
