@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peaky/explore.dart';
 import 'package:peaky/model/place.dart';
 import 'package:peaky/util/constants.dart';
 
@@ -31,15 +32,6 @@ with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: 'Overview',),
     Tab(text: 'Reviews',)
-  ];
-
-  static List<Widget> tabViews = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.yellow,
-    ),
   ];
 
   @override
@@ -92,7 +84,7 @@ with TickerProviderStateMixin {
                  preferredSize: const Size(20,20),
                  child: Container(
                    color: Colors.white,
-                   margin: const EdgeInsets.only(top: 10),
+                   padding: const EdgeInsets.only(left: 16, right: 16),
                    child: TabBar(
                      tabs: tabs,
                      indicatorSize: TabBarIndicatorSize.tab,
@@ -106,11 +98,238 @@ with TickerProviderStateMixin {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.6,
-                child: TabBarView(controller: _tabController,children: tabViews,),
+                height: MediaQuery.of(context).size.height * 0.8,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                  '${widget.place.placeName}',
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  fontSize: 20
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '${widget.place.streetName}',
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                  color: AppConstants.kColorOnPrimary
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          Row(
+                            children: [
+                              Text('${widget.place.ratings} Ratings'),
+                              const Spacer(),
+                              Image.asset(
+                                AppConstants.location,
+                                width: 24, height: 24,
+                                fit: BoxFit.fill,
+                                color: AppConstants.kColorPrimaryContainer,
+                              ),
+                              const Text(
+                                  'Map Directions',
+                                style: TextStyle(
+                                  color: AppConstants.kColorPrimaryContainer,
+                                ),
+                              ),
+                              const SizedBox(width: 16,)
+                            ],
+                          ),
+                          const Row(
+                            children: [
+                              Text(
+                                  'Amenities',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: AppConstants.kColorPrimary),
+                                    borderRadius: const BorderRadius.all(Radius.circular(10))
+                                  ),
+                                  height: 50,
+                                  width: 150,
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.bed, size: 24,),
+                                      SizedBox(width: 10,),
+                                      Text(
+                                        'Master Bed',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 10,),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: AppConstants.kColorPrimary),
+                                      borderRadius: const BorderRadius.all(Radius.circular(10))
+                                  ),
+                                  height: 50,
+                                  width: 150,
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.set_meal, size: 24,),
+                                      SizedBox(width: 10,),
+                                      Text(
+                                        'Dinner',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 10,),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: AppConstants.kColorPrimary),
+                                      borderRadius: const BorderRadius.all(Radius.circular(10))
+                                  ),
+                                  height: 50,
+                                  width: 100,
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.sports_gymnastics, size: 24,),
+                                      SizedBox(width: 10,),
+                                      Text(
+                                        'Gym',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: AppConstants.kColorPrimary),
+                                    borderRadius: const BorderRadius.all(Radius.circular(10))
+                                ),
+                                height: 50,
+                                width: 155,
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.sports_gymnastics, size: 24,),
+                                    SizedBox(width: 10,),
+                                    Text(
+                                      'Swimming pool',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Divider(
+                            color: AppConstants.kColorPrimary,
+                          ),
+                          const Row(
+                            children: [
+                              Text(
+                                  'Description',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                  '${widget.place.description}',
+                                style: const TextStyle(
+                                  color: AppConstants.kColorOnPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      color: AppConstants.kColorPrimary,
+                      child: const Center(
+                        child: Text(
+                          'Will Implement this feature soon',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
             ),
             ),
           ],
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.transparent,
+          elevation: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('\$${widget.place.price}/Night'),
+              ElevatedButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Explore(place: widget.place,))),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppConstants.kColorPrimaryContainer,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                ),
+                child: const Text(
+                    'Book Now',
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

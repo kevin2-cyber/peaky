@@ -19,17 +19,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   loadImage('${AppConstants.kDummyData[_selectedIndex].image}');
-  // }
-  //
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   loadImage('${AppConstants.kDummyData[_selectedIndex].image}');
-  // }
 final widgetOptions = [
   const HomeScreen(),
 
@@ -75,6 +64,10 @@ final widgetOptions = [
     return Scaffold(
       body: widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        // selectedItemColor: AppConstants.kColorPrimaryContainer,
+        // unselectedItemColor: AppConstants.kColorPrimary,
+        // selectedIconTheme: ThemeData.light().iconTheme,
+        // unselectedIconTheme: ThemeData.light().iconTheme,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: [

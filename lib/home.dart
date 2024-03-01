@@ -26,18 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     'Home'
   ];
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   loadImage('${_places[selectedIndex].image}');
-  // }
-  //
-  // @override
-  // void didChangeDependencies() {
-  //   precacheImage(AssetImage('${AppConstants.kDummyData[selectedIndex].image}'), context);
-  //   super.didChangeDependencies();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

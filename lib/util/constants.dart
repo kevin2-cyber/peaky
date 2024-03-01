@@ -32,11 +32,11 @@ class AppConstants {
   // dummy data
   static final kDummyData = <Place>[
     Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', amar, 'Lorem Ipsum', 4.5, 120.0),
-    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', chan, 'Lorem Ipsum', 4.5, 540.0),
-    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', efrain, 'Lorem Ipsum', 4.5, 250.0),
-    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', pexels, 'Lorem Ipsum', 4.5, 350.0),
-    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', pixabay, 'Lorem Ipsum', 4.5, 3600.0),
-    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', recal, 'Lorem Ipsum', 4.5, 320.0),
-    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', amar, 'Lorem Ipsum', 4.5, 120.0),
+    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', chan, 'Lorem Ipsum', 4.6, 540.0),
+    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', efrain, 'Lorem Ipsum', 3.5, 250.0),
+    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', pexels, 'Lorem Ipsum', 4.0, 350.0),
+    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', pixabay, 'Lorem Ipsum', 4.7, 3600.0),
+    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', recal, 'Lorem Ipsum', 4.9, 320.0),
+    Place('Dusai Resort & Spa', 'Sreemangal, $appName, Bangladesh', amar, 'Lorem Ipsum', 2.5, 120.0),
   ];
 }
