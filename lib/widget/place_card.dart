@@ -4,20 +4,30 @@ import 'package:peaky/model/place.dart';
 
 import '../util/constants.dart';
 
-class PlaceCard extends StatelessWidget {
+class PlaceCard extends StatefulWidget {
   const PlaceCard({super.key, required this.place});
 
   final Place place;
 
   @override
+  State<PlaceCard> createState() => _PlaceCardState();
+}
+
+class _PlaceCardState extends State<PlaceCard> {
+  final List<bool> _isFavorited = List.filled(AppConstants.kDummyData.length, false);
+  int selectedIndex = 0;
+
+
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Details(place: place))),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Details(place: widget.place))),
       child: Container(
         height: MediaQuery.of(context).size.height * 0.2,
         width: MediaQuery.of(context).size.width * 0.7,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('${place.image}'), fit: BoxFit.fill),
+          image: DecorationImage(image: AssetImage('${widget.place.image}'), fit: BoxFit.fill),
           borderRadius: const BorderRadius.all(Radius.circular(10))
         ),
         child: Column(
@@ -32,9 +42,10 @@ class PlaceCard extends StatelessWidget {
                     color: AppConstants.kColorPrimary,
                   ),
                   child: IconButton(
-                      onPressed: (){},
+                      onPressed: () => setState(
+                              () => _isFavorited[selectedIndex] = !_isFavorited[selectedIndex]),
                       splashColor: Colors.amberAccent,
-                      icon: Image.asset(AppConstants.heart, height: 30, width: 30,)
+                      icon: _isFavorited[selectedIndex] ? Image.asset(AppConstants.favourite, height: 30, width: 30,) : Image.asset(AppConstants.heart, height: 30, width: 30,)
                   ),
                 ),
               ],
@@ -47,7 +58,7 @@ class PlaceCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    '${place.placeName}',
+                    '${widget.place.placeName}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -55,7 +66,7 @@ class PlaceCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${place.price}/Night',
+                  '${widget.place.price}/Night',
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,

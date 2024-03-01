@@ -13,6 +13,8 @@ class AppConstants {
   static const user = 'assets/icons/user.png';
   static const back = 'assets/icons/back.png';
   static const google = 'assets/icons/google.png';
+  static const favourite = 'assets/icons/heart_filled.png';
+  static const disableNotification = 'assets/icons/disable-alarm.png';
 
   // images
   static const amar = 'assets/images/amar.jpg';

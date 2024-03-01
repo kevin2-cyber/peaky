@@ -99,7 +99,7 @@ class RegisterWithPhone extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             MaterialButton(
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WelcomeScreen())),

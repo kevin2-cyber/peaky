@@ -15,6 +15,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _places = AppConstants.kDummyData.toList();
   int selectedIndex = 0;
+  bool _isEnabled = true;
+
+  void _toggleEnabled() {
+    setState(() {
+      _isEnabled = !_isEnabled;
+    });
+  }
 
   List<String> categories = [
     'All',
@@ -54,9 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             margin: const EdgeInsets.only(right: 16),
             child: IconButton(
-                onPressed: (){},
+                onPressed: _toggleEnabled,
                 splashColor: Colors.amberAccent,
-                icon: Image.asset(AppConstants.notification, height: 30, width: 30,)
+                icon: _isEnabled ? Image.asset(AppConstants.notification, height: 30, width: 30,) : Image.asset(AppConstants.disableNotification, height: 30, width: 30,)
             ),
           )
         ],
@@ -132,12 +139,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ChipList(
                 listOfChipNames: categories,
-                listOfChipIndicesCurrentlySeclected: const [1],
+                supportsMultiSelect: true,
+                listOfChipIndicesCurrentlySeclected: [selectedIndex],
                 activeBgColorList: const [AppConstants.kColorPrimaryContainer],
                 inactiveBgColorList: const [Colors.white],
                 inactiveBorderColorList: const [Color(0xFFE1E6ED)],
                 inactiveTextColorList: const [AppConstants.kColorOnPrimary],
                 scrollPhysics: const BouncingScrollPhysics(),
+                showCheckmark: false,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
