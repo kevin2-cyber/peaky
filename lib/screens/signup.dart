@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:peaky/screens/another_screen.dart';
 import 'package:peaky/screens/welcome.dart';
 
 import '../util/constants.dart';
@@ -61,11 +62,16 @@ class _SignUpState extends State<SignUp>
   }
 }
 
-class RegisterWithPhone extends StatelessWidget {
+class RegisterWithPhone extends StatefulWidget {
   const RegisterWithPhone({
     super.key,
   });
 
+  @override
+  State<RegisterWithPhone> createState() => _RegisterWithPhoneState();
+}
+
+class _RegisterWithPhoneState extends State<RegisterWithPhone> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -119,10 +125,19 @@ class RegisterWithPhone extends StatelessWidget {
   }
 }
 
-class RegisterWithEmail extends StatelessWidget {
+class RegisterWithEmail extends StatefulWidget {
   const RegisterWithEmail({
     super.key,
   });
+
+  @override
+  State<RegisterWithEmail> createState() => _RegisterWithEmailState();
+}
+
+class _RegisterWithEmailState extends State<RegisterWithEmail> {
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +154,7 @@ class RegisterWithEmail extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
+              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.mail, color: AppConstants.kColorOnPrimary,),
@@ -164,6 +180,7 @@ class RegisterWithEmail extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
+              controller: _passwordController,
               keyboardType: TextInputType.visiblePassword,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.lock, color: AppConstants.kColorOnPrimary,),
@@ -203,7 +220,7 @@ class RegisterWithEmail extends StatelessWidget {
               height: 10,
             ),
             MaterialButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WelcomeScreen())),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Another(email: _emailController.text, password: _passwordController.text,))),
               height: 50,
               minWidth: MediaQuery.of(context).size.width,
               color: AppConstants.kColorPrimaryContainer,
