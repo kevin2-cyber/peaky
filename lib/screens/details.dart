@@ -17,6 +17,7 @@ class _DetailsState extends State<Details>
 with TickerProviderStateMixin {
 
    TabController? _tabController;
+   int selectedIndex = 0;
 
   @override
   void initState() {
@@ -33,6 +34,20 @@ with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: 'Overview',),
     Tab(text: 'Reviews',)
+  ];
+
+  List<String> amenities = [
+    'Master',
+    'Dinner',
+    'Gym',
+    'Swimming pool'
+  ];
+
+  List<Icon> icons = const [
+    Icon(Icons.bed),
+    Icon(Icons.dining_outlined),
+    Icon(Icons.sports_gymnastics),
+    Icon(Icons.pool)
   ];
 
   @override
@@ -81,21 +96,6 @@ with TickerProviderStateMixin {
                   borderRadius: const BorderRadius.only(bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20))
                 ),
               ),
-               // bottom: PreferredSize(
-               //   preferredSize: const Size(20,20),
-               //   child: Container(
-               //     color: Colors.white,
-               //     padding: const EdgeInsets.only(left: 16, right: 16),
-               //     child: TabBar(
-               //       tabs: tabs,
-               //       indicatorSize: TabBarIndicatorSize.tab,
-               //       controller: _tabController,
-               //       labelColor: AppConstants.kColorPrimaryContainer,
-               //       unselectedLabelColor: AppConstants.kColorOnPrimary,
-               //       indicatorColor: AppConstants.kColorPrimaryContainer,
-               //     ),
-               //   )
-               // ),
             ),
             SliverToBoxAdapter(
               child: TabBar(
@@ -173,105 +173,109 @@ with TickerProviderStateMixin {
                               ),
                             ],
                           ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: AppConstants.kColorPrimary),
-                                    borderRadius: const BorderRadius.all(Radius.circular(10))
+                          // SingleChildScrollView(
+                          //   scrollDirection: Axis.horizontal,
+                          //   child: Row(
+                          //     children: [
+                          //       Container(
+                          //         decoration: BoxDecoration(
+                          //           border: Border.all(color: AppConstants.kColorPrimary),
+                          //           borderRadius: const BorderRadius.all(Radius.circular(10))
+                          //         ),
+                          //         height: 50,
+                          //         width: 150,
+                          //         child: const Row(
+                          //           mainAxisAlignment: MainAxisAlignment.center,
+                          //           children: [
+                          //             Icon(Icons.bed, size: 24,),
+                          //             SizedBox(width: 10,),
+                          //             Text(
+                          //               'Master Bed',
+                          //             style: TextStyle(
+                          //               fontSize: 14,
+                          //             ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //       const SizedBox(width: 10,),
+                          //       Container(
+                          //         decoration: BoxDecoration(
+                          //             border: Border.all(color: AppConstants.kColorPrimary),
+                          //             borderRadius: const BorderRadius.all(Radius.circular(10))
+                          //         ),
+                          //         height: 50,
+                          //         width: 150,
+                          //         child: const Row(
+                          //           mainAxisAlignment: MainAxisAlignment.center,
+                          //           children: [
+                          //             Icon(Icons.set_meal, size: 24,),
+                          //             SizedBox(width: 10,),
+                          //             Text(
+                          //               'Dinner',
+                          //               style: TextStyle(
+                          //                 fontSize: 14,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //       const SizedBox(width: 10,),
+                          //       Container(
+                          //         decoration: BoxDecoration(
+                          //             border: Border.all(color: AppConstants.kColorPrimary),
+                          //             borderRadius: const BorderRadius.all(Radius.circular(10))
+                          //         ),
+                          //         height: 50,
+                          //         width: 100,
+                          //         child: const Row(
+                          //           mainAxisAlignment: MainAxisAlignment.center,
+                          //           children: [
+                          //             Icon(Icons.sports_gymnastics, size: 24,),
+                          //             SizedBox(width: 10,),
+                          //             Text(
+                          //               'Gym',
+                          //               style: TextStyle(
+                          //                 fontSize: 14,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          Wrap(
+                            spacing: 5,
+                            children: List.generate(amenities.length, (index) =>
+                                ChoiceChip(
+                                  avatar: icons[index],
+                                  label: Text(
+                                    amenities[index],
+                                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                                      color: AppConstants.kColorOnPrimary,
+                                    ),
                                   ),
-                                  height: 50,
-                                  width: 150,
-                                  child: const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.bed, size: 24,),
-                                      SizedBox(width: 10,),
-                                      Text(
-                                        'Master Bed',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                      ),
-                                    ],
+                                  selected: selectedIndex == index,
+                                  selectedColor: selectedIndex == index ? Colors.white70 : Colors.white,
+                                  labelPadding: const EdgeInsets.all(2.0),
+                                  showCheckmark: false,
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  elevation: 0,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    side: BorderSide(color: AppConstants.kColorPrimary),
                                   ),
+                                  onSelected: (value) {
+                                    setState(() {
+                                      selectedIndex = value ? index : selectedIndex;
+                                    });
+                                  },
                                 ),
-                                const SizedBox(width: 10,),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: AppConstants.kColorPrimary),
-                                      borderRadius: const BorderRadius.all(Radius.circular(10))
-                                  ),
-                                  height: 50,
-                                  width: 150,
-                                  child: const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.set_meal, size: 24,),
-                                      SizedBox(width: 10,),
-                                      Text(
-                                        'Dinner',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 10,),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: AppConstants.kColorPrimary),
-                                      borderRadius: const BorderRadius.all(Radius.circular(10))
-                                  ),
-                                  height: 50,
-                                  width: 100,
-                                  child: const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.sports_gymnastics, size: 24,),
-                                      SizedBox(width: 10,),
-                                      Text(
-                                        'Gym',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                           const SizedBox(
                             height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: AppConstants.kColorPrimary),
-                                    borderRadius: const BorderRadius.all(Radius.circular(10))
-                                ),
-                                height: 50,
-                                width: 155,
-                                child: const Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.sports_gymnastics, size: 24,),
-                                    SizedBox(width: 10,),
-                                    Text(
-                                      'Swimming pool',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
                           ),
                           const Divider(
                             color: AppConstants.kColorPrimary,

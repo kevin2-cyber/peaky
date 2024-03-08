@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         titleSpacing: 0,
         titleTextStyle: GoogleFonts.workSans(
-          fontSize: 22,
+          fontSize: 18,
           color: AppConstants.kColorOnPrimary
         ),
         leading: IconButton(
@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         title: const Text(AppConstants.appName),
+        centerTitle: false,
         actions: [
           Container(
             decoration: const BoxDecoration(
@@ -137,16 +138,38 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              ChipList(
-                listOfChipNames: categories,
-                supportsMultiSelect: true,
-                listOfChipIndicesCurrentlySeclected: [selectedIndex],
-                activeBgColorList: const [AppConstants.kColorPrimaryContainer],
-                inactiveBgColorList: const [Colors.white],
-                inactiveBorderColorList: const [Color(0xFFE1E6ED)],
-                inactiveTextColorList: const [AppConstants.kColorOnPrimary],
-                scrollPhysics: const BouncingScrollPhysics(),
-                showCheckmark: false,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.only(left: 16, bottom: 5),
+                child: Wrap(
+                  spacing: 5,
+                  children: List.generate(categories.length, (index) =>
+                      ChoiceChip(
+                        label: Text(
+                          categories[index],
+                          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                              color:  selectedIndex == index ? Colors.white : Colors.black,
+                          ),
+                        ),
+                        selected: selectedIndex == index,
+                        selectedColor: selectedIndex == index ? AppConstants.kColorPrimaryContainer : Colors.white,
+                        labelPadding: const EdgeInsets.all(2.0),
+                        showCheckmark: false,
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        elevation: selectedIndex == index ? 5 : 0,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          side: BorderSide(color: Colors.transparent),
+                        ),
+                        onSelected: (value) {
+                          setState(() {
+                            selectedIndex = value ? index : selectedIndex;
+                          });
+                        },
+                      ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,

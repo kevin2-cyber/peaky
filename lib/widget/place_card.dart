@@ -27,7 +27,10 @@ class _PlaceCardState extends State<PlaceCard> {
         height: MediaQuery.of(context).size.height * 0.2,
         width: MediaQuery.of(context).size.width * 0.7,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('${widget.place.image}'), fit: BoxFit.fill),
+          image: DecorationImage(
+              image: AssetImage('${widget.place.image}'),
+              colorFilter: const ColorFilter.mode(Colors.black26, BlendMode.darken),
+              fit: BoxFit.fill),
           borderRadius: const BorderRadius.all(Radius.circular(10))
         ),
         child: Column(
@@ -51,29 +54,35 @@ class _PlaceCardState extends State<PlaceCard> {
               ],
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.27,
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                    '${widget.place.placeName}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Row(
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                          '${widget.place.placeName}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700
+                        ),
+                      ),
+                      Text(
+                        '${widget.place.price}/Night',
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
                   ),
-                ),
-                Text(
-                  '${widget.place.price}/Night',
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
